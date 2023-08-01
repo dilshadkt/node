@@ -83,9 +83,42 @@
 
 ///////////////// os /// build in module ///////////
 
-const os = require("os");
-const Totalmem = os.totalmem;
-const frrMen = os.freemem;
+// const os = require("os");
+// const Totalmem = os.totalmem;
+// const frrMen = os.freemem;
 
-console.log(`total memory :${Totalmem}`);
-console.log(`free memory :${frrMen}`);
+// console.log(`total memory :${Totalmem}`);
+// console.log(`free memory :${frrMen}`);
+
+///////// fs module ///////////////////
+
+// const fs = require("fs");
+// // const file = fs.readdirSync("./");
+
+// const file = fs.readdir("%", function (err, file) {
+//   if (err) console.log("error :", err);
+//   else console.log("result", file);
+// });
+
+////////////////Events (●'◡'●)/ /////////
+// const EventEmitor = require("events");
+
+// const emittor = new EventEmitor();
+// emittor.on("message Logfged", function () {
+//   console.log("listner called");
+// });
+
+// emittor.emit("message Logfged");
+
+////////// pass data as arguments 📤📤/////
+
+const EventEmitor = require("events");
+const emittor = new EventEmitor();
+
+const Logger = require("./logg");
+const loggger = new Logger();
+
+loggger.on("logged", function (arg) {
+  console.log("listner called", arg);
+});
+loggger.log("Dilshad");
