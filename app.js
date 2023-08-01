@@ -18,23 +18,74 @@
 
 ////////////////////first server conncetion ///////////////////
 
-let http = require("http");
-let fs = require("fs");
+// let http = require("http");
+// let fs = require("fs");
 
-const server = http.createServer(function (req, res) {
-  res.writeHead(200, { "content-Type": "text/html" });
-  fs.readFile("index.html", function (err, data) {
-    if (err) {
-      res.writeHead(404);
-      res.write("Error :page donot found🚫");
-    } else {
-      res.write(data);
-    }
-    res.end();
-  });
-  // res.write("hello world");
-});
+// const server = http.createServer(function (req, res) {
+//   res.writeHead(200, { "content-Type": "text/html" });
+//   fs.readFile("index.html", function (err, data) {
+//     if (err) {
+//       res.writeHead(404);
+//       res.write("Error :page donot found🚫");
+//     } else {
+//       res.write(data);
+//     }
+//     res.end();
+//   });
+//   // res.write("hello world");
+// });
 
-server.listen(9000, function (err, data) {
-  console.log("running......");
-});
+// server.listen(9000, function (err, data) {
+//   console.log("running......");
+// });
+
+//////////////////  module scoping ✨✨//////////
+
+// require("./batman");              ////////////each module has its own scope /////////
+// require("./superman");            ///////////each module loaded with an IIFF ///////
+
+///////////////////// exporting and importing ⬆️⬇️////////////////////////
+// const { add, sub } = require("./calculation");
+
+// const result = add(2, 3);
+// console.log(result);
+
+//🙋‍♂️ how the its work with without modules while importing and exporting modules
+
+// const obj1 = {
+//   name: "Dilshad",
+// };
+// const obj2 = obj1;  /////////  here is the exmaple of without modules here its change the obj1 value
+// obj2.name = "rahul";
+// console.log(obj1.name);
+
+/////////// ✅✅✅✅
+
+// const obj1 = {
+//   name: "Dilshad",
+// };
+// let obj2 = obj1;
+// obj2 = {
+//   //// here it is resigned instead of modifying it
+//   name: "rahul",
+// };
+
+// console.log(obj1.name);
+
+////////////////// let chill 😒😒///////////
+
+// const message = require("./logg");
+// message("Dilshad");
+
+// const path = require("path");
+// var pathObj = path.parse(__filename);
+// console.log(pathObj);
+
+///////////////// os /// build in module ///////////
+
+const os = require("os");
+const Totalmem = os.totalmem;
+const frrMen = os.freemem;
+
+console.log(`total memory :${Totalmem}`);
+console.log(`free memory :${frrMen}`);
