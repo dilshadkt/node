@@ -1,141 +1,66 @@
-// let epxress = require("express");
+// const { log, warning, info } = require("./log");
 
-// const app = epxress();
-// app.get("/", function (req, res) {
-//   res.send("hello  World😍😍");
-// });
-// app.get("/alien", function (req, res) {
-//   const id = req.query.id;
-//   res.send("hello aliens 👽👽👽🙋‍♂️" + id);
-// });
-// app.get("/alien/:id", function (req, res) {
-//   const id = req.params.id;
-//   res.send("hello Dilshad " + id);
-// });
-// app.listen(9000, function (req, res) {
-//   console.log("running...............");
-// });
+// log("Dilshadkt");
+// console.log(warning);
+// console.log(info);
 
-////////////////////first server conncetion ///////////////////
+///////////// importing module multiple times /////////
 
-// let http = require("http");
-// let fs = require("fs");
+// let blog = require("./blog");
+// blog = require("./blog");
 
-// const server = http.createServer(function (req, res) {
-//   res.writeHead(200, { "content-Type": "text/html" });
-//   fs.readFile("index.html", function (err, data) {
-//     if (err) {
-//       res.writeHead(404);
-//       res.write("Error :page donot found🚫");
-//     } else {
-//       res.write(data);
-//     }
-//     res.end();
-//   });
-//   // res.write("hello world");
+////// buffer ...................//////////
+
+// const buffer = new Buffer.from("Dilshad");
+// console.log(buffer.write("code"));
+// console.log(buffer.toString());
+// console.log(buffer.toJSON());
+
+///////////////////  fs module  ///////
+
+const fs = require("node:fs/promises");
+
+// fs.writeFile("./greet.txt", "hello Dilshad", (error) => {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("file writed");
+//   }
 // });
-
-// server.listen(9000, function (err, data) {
-//   console.log("running......");
+// fs.writeFileSync("./greet.txt", "its me dilshad");
+// fs.writeFile("./greet.txt", "its me dilshad", { flag: "a" }, (error) => {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("writed");
+//   }
 // });
 
-//////////////////  module scoping ✨✨//////////
-
-// require("./batman");              ////////////each module has its own scope /////////
-// require("./superman");            ///////////each module loaded with an IIFF ///////
-
-///////////////////// exporting and importing ⬆️⬇️////////////////////////
-// const { add, sub } = require("./calculation");
-
-// const result = add(2, 3);
-// console.log(result);
-
-//🙋‍♂️ how the its work with without modules while importing and exporting modules
-
-// const obj1 = {
-//   name: "Dilshad",
-// };
-// const obj2 = obj1;  /////////  here is the exmaple of without modules here its change the obj1 value
-// obj2.name = "rahul";
-// console.log(obj1.name);
-
-/////////// ✅✅✅✅
-
-// const obj1 = {
-//   name: "Dilshad",
-// };
-// let obj2 = obj1;
-// obj2 = {
-//   //// here it is resigned instead of modifying it
-//   name: "rahul",
-// };
-
-// console.log(obj1.name);
-
-////////////////// let chill 😒😒///////////
-
-// const message = require("./logg");
-// message("Dilshad");
-
-// const path = require("path");
-// var pathObj = path.parse(__filename);
-// console.log(pathObj);
-
-///////////////// os /// build in module ///////////
-
-// const os = require("os");
-// const Totalmem = os.totalmem;
-// const frrMen = os.freemem;
-
-// console.log(`total memory :${Totalmem}`);
-// console.log(`free memory :${frrMen}`);
-
-///////// fs module ///////////////////
-
-// const fs = require("fs");
-// // const file = fs.readdirSync("./");
-
-// const file = fs.readdir("%", function (err, file) {
-//   if (err) console.log("error :", err);
-//   else console.log("result", file);
+// console.log("first");
+// const data = fs.readFileSync("./greet.txt", "utf-8");
+// console.log(data);
+// console.log("second");
+// fs.readFile("./greet.txt", "utf-8", (err, data) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log(data);
+//   }
 // });
+// console.log("third");
 
-////////////////Events (●'◡'●)/ /////////
-// const EventEmitor = require("events");
-// const emittor = new EventEmitor();
+// fs.readFile("./greet.txt", "utf-8")
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log(err));
 
-// emittor.on("message Logfged", function () {
-//   console.log("listner called");
-// });
+/////////// fs promise using normal async function ///////////////
 
-// emittor.emit("message Logfged");
-
-////////// pass data as arguments 📤📤/////
-
-// const EventEmitor = require("events");
-// const emittor = new EventEmitor();
-
-// const Logger = require("./logg");
-// const loggger = new Logger();
-
-// loggger.on("logged", function (arg) {
-//   console.log("listner called", arg);
-// });
-// loggger.log("Dilshad");
-
-//////////////// http 🌐🌐🌐🌐///////////
-
-const http = require("http");
-
-http
-  .createServer((req, res) => {
-    if (req.url === "/") {
-      res.write("Hello world");
-      res.end();
-    }
-    if (req.url === "/dilsgad") {
-      res.write(JSON.stringify([1, 2, 3, 4]));
-      res.end();
-    }
-  })
-  .listen(8000);
+async function readFile() {
+  try {
+    const data = await fs.readFile("./greet.txt", "utf-8");
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+readFile();
