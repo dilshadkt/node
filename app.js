@@ -102,8 +102,8 @@
 
 ////////////////Events (●'◡'●)/ /////////
 // const EventEmitor = require("events");
-
 // const emittor = new EventEmitor();
+
 // emittor.on("message Logfged", function () {
 //   console.log("listner called");
 // });
@@ -112,13 +112,30 @@
 
 ////////// pass data as arguments 📤📤/////
 
-const EventEmitor = require("events");
-const emittor = new EventEmitor();
+// const EventEmitor = require("events");
+// const emittor = new EventEmitor();
 
-const Logger = require("./logg");
-const loggger = new Logger();
+// const Logger = require("./logg");
+// const loggger = new Logger();
 
-loggger.on("logged", function (arg) {
-  console.log("listner called", arg);
-});
-loggger.log("Dilshad");
+// loggger.on("logged", function (arg) {
+//   console.log("listner called", arg);
+// });
+// loggger.log("Dilshad");
+
+//////////////// http 🌐🌐🌐🌐///////////
+
+const http = require("http");
+
+http
+  .createServer((req, res) => {
+    if (req.url === "/") {
+      res.write("Hello world");
+      res.end();
+    }
+    if (req.url === "/dilsgad") {
+      res.write(JSON.stringify([1, 2, 3, 4]));
+      res.end();
+    }
+  })
+  .listen(8000);
