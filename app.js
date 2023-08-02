@@ -18,7 +18,7 @@
 
 ///////////////////  fs module  ///////
 
-const fs = require("node:fs/promises");
+// const fs = require("node:fs/promises");
 
 // fs.writeFile("./greet.txt", "hello Dilshad", (error) => {
 //   if (error) {
@@ -55,12 +55,50 @@ const fs = require("node:fs/promises");
 
 /////////// fs promise using normal async function ///////////////
 
-async function readFile() {
-  try {
-    const data = await fs.readFile("./greet.txt", "utf-8");
-    console.log(data);
-  } catch (err) {
-    console.log(err);
+// async function readFile() {
+//   try {
+//     const data = await fs.readFile("./greet.txt", "utf-8");
+//     console.log(data);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+// readFile();
+
+/////// working of stream ///////////////
+
+// const fs = require("node:fs");
+
+// const zlib = require("node:zlib");
+// const gzib = zlib.createGzip();
+
+// const readbleStream = fs.createReadStream("./greet.txt", {
+//   encoding: "utf-8",
+//   highWaterMark: 1,
+// });
+// const writableStream = fs.createWriteStream("./file2.txt");
+// readbleStream.pipe(gzib).pipe(fs.WriteStream("./filedd.txt.gz"));
+// readbleStream.pipe(writableStream);
+
+// readbleStream.on("data", (chunk) => {
+//   console.log(chunk);
+//   writableStream.write(chunk);
+// });
+
+//////////////////   http module 😇😇😇😇 /////////////
+
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    res.writeHead(200, { "content-Type": "text/plain" });
+    res.end("This is home");
+  } else if (req.url === "/about") {
+    res.writeHead(200, { "content-Type": "text/plain" });
+    res.end("this is about");
+  } else {
+    res.writeHead(404);
+    res.end("page not found");
   }
-}
-readFile();
+});
+server.listen(8000);
